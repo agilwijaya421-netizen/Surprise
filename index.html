@@ -17,7 +17,7 @@
     }
 
     body {
-      background: #ffb6c1; /* Solid pink background */
+      background: #ffb6c1;
       color: #111;
       overflow: hidden;
     }
@@ -33,6 +33,8 @@
       top: 0;
       left: 0;
       transition: opacity 1s ease, transform 1s ease;
+      padding: 20px;
+      text-align: center;
     }
 
     .hidden {
@@ -41,18 +43,17 @@
       transform: scale(0.9);
     }
 
+    /* RESPONSIVE TEXT */
     h1 {
-      font-size: 2.8rem;
-      text-align: center;
+      font-size: clamp(1.6rem, 5vw, 2.8rem);
       color: #fff;
       text-shadow: 2px 2px 10px rgba(0,0,0,0.3);
       margin-bottom: 20px;
     }
 
     p {
-      font-size: 1.2rem;
+      font-size: clamp(0.95rem, 3.5vw, 1.2rem);
       color: #fff;
-      text-align: center;
       max-width: 600px;
     }
 
@@ -73,7 +74,7 @@
       transform: scale(1.05);
     }
 
-    /* Envelope - dimulai tertutup */
+    /* Envelope */
     .envelope {
       width: 220px;
       height: 150px;
@@ -92,19 +93,19 @@
       border-left: 110px solid transparent;
       border-right: 110px solid transparent;
       border-bottom: 75px solid #ff4d6d;
-      transition: transform 0.6s ease; /* Animasi pembukaan */
+      transition: transform 0.6s ease;
       transform-origin: bottom;
-      transform: rotateX(0deg); /* Tertutup awalnya */
+      transform: rotateX(0deg);
     }
 
     .open::before {
-      transform: rotateX(180deg); /* Terbuka saat diklik */
+      transform: rotateX(180deg);
     }
 
     /* Photo */
     .photo {
-      width: 250px;
-      height: 250px;
+      width: clamp(180px, 50vw, 250px);
+      height: clamp(180px, 50vw, 250px);
       border-radius: 20px;
       object-fit: cover;
       box-shadow: 0 10px 25px rgba(0,0,0,0.3);
@@ -125,49 +126,48 @@
         opacity: 0;
       }
     }
-
   </style>
 </head>
 <body>
 
   <!-- Music -->
-<audio id="Lagu" loop>
-  <source src="Lagu.mp3" type="audio/mp3">
-</audio>
+  <audio id="Lagu" loop>
+    <source src="Lagu.mp3" type="audio/mpeg">
+  </audio>
 
-<script>
-document.addEventListener("click", function () {
-  document.getElementById("Lagu").play();
-}, { once: true });
-</script>
+  <script>
+    document.addEventListener("click", function () {
+      document.getElementById("Lagu").play();
+    }, { once: true });
+  </script>
 
   <!-- Slide 1 -->
   <section id="slide1">
     <h1>Halooo Sayangkuuu 🥰</h1>
     <p>Aku punya sesuatu yang mau aku kasih ke kamu...</p>
-    <button onclick="nextSlide(2)">Kilk disiniii</button>
+    <button onclick="nextSlide(2)">Klik disiniii</button>
   </section>
 
-  <!-- Slide 2: Envelope -->
+  <!-- Slide 2 -->
   <section id="slide2" class="hidden">
     <div class="envelope" onclick="openLetter(this)"></div>
     <p>Klik amplopnya yaa ✉️</p>
   </section>
 
-  <!-- Slide 3: Typing message -->
+  <!-- Slide 3 -->
   <section id="slide3" class="hidden">
     <h1 id="typing"></h1>
     <button onclick="nextSlide(4)">Lanjut 💕</button>
   </section>
 
-  <!-- Slide 4: Photo & secret -->
+  <!-- Slide 4 -->
   <section id="slide4" class="hidden">
     <h1>Aku kangen masa masa ini... 🥰</h1>
     <img src="Foto.jpeg" class="photo" />
     <button onclick="showSecret()">Klik untuk lihat pesan rahasia</button>
     <p id="secret" style="display:none; margin-top:15px;">
       Aku sayang banget sama Popi.. Hari ini, besok, dan seterusnya.
-      I Love Youu❤️ 
+      I Love Youu ❤️
     </p>
   </section>
 
@@ -178,8 +178,8 @@ document.addEventListener("click", function () {
     }
 
     function openLetter(el) {
-      el.classList.add('open'); // Tambahkan class untuk membuka amplop
-      setTimeout(() => nextSlide(3), 800); // Lanjut ke slide berikutnya setelah animasi
+      el.classList.add('open');
+      setTimeout(() => nextSlide(3), 800);
       typeText();
     }
 
